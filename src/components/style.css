@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f5f3f4;
+}
+
+nav {
+  display: flex;
+  padding: 20px;
+  margin: 50px 6%;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: -1px 8px 22px -6px #e4e1e1;
+}
+
+.nav {
+  display: flex;
+  gap: 60px;
+}
+
+#imp {
+  color: #3a86ff;
+  font-weight: bolder;
+  font-size: 22px;
+}
+
+#imp2 {
+  color: #4b5156;
+}
+
+#imp3 {
+  color: #78818a;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.contanier {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+h2 {
+  color: rgb(146, 145, 145);
+  margin: 0 190px;
+}
+
+.input-book {
+  width: 600px;
+  padding: 16px;
+  margin: 30px 25px 20px 140px;
+  font-size: 14px;
+  color: #90979e;
+  height: 50px;
+  border-radius: 4px;
+  border: 1px solid rgb(224, 221, 221);
+  outline: none;
+}
+
+.input-author {
+  width: 240px;
+  padding: 16px;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #90979e;
+  height: 50px;
+  border-radius: 4px;
+  border: 1px solid rgb(224, 221, 221);
+  outline: none;
+}
+
+.select-cata {
+  font-size: 14px;
+  height: 50px;
+  width: 200px;
+  margin-right: 20px;
+  color: #5a5d60;
+  border-radius: 4px;
+  border: 1px solid rgb(224, 221, 221);
+  outline: none;
+}
+
+.addbtn {
+  font-size: 14px;
+  height: 50px;
+  width: 160px;
+  color: white;
+  border-radius: 4px;
+  border: 1px solid rgb(224, 221, 221);
+  outline: none;
+  background-color: #3a86ff;
+  cursor: pointer;
+}
+
+.bookcont {
+  display: flex;
+  padding: 30px;
+  margin: 20px 190px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: -1px 8px 22px -6px #e4e1e1;
+}
+
+.books-info {
+  text-align: justify;
+}
+
+.book-cata {
+  color: #78818a;
+}
+
+.book-title {
+  padding-top: 4px;
+  font-size: 20px;
+}
+
+.book-author {
+  color: #5aa9e6;
+  font-size: 14px;
+  padding-bottom: 20px;
+}
+
+.btn {
+  color: #5aa9e6;
+  border: none;
+  background-color: #fff;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.compelet {
+  padding-left: 350px;
+  padding-top: 20px;
+  text-align: justify;
+}
+
+.precent {
+  font-size: 26px;
+}
+
+h5 {
+  color: #b4b9bd;
+}
+
+.current-part {
+  padding-left: 180px;
+  text-align: justify;
+}
+
+.current-chapter {
+  color: #b4b9bd;
+  font-size: 14px;
+  padding-bottom: 8px;
+}
+
+h4 {
+  color: rgb(53, 52, 52);
+  padding-bottom: 20px;
+}
+
+.upd-btn {
+  font-size: 12px;
+  width: 180px;
+  height: 30px;
+  color: rgb(211, 208, 208);
+  border-radius: 4px;
+  border: 1px solid rgb(224, 221, 221);
+  outline: none;
+  background-color: #3a86ff;
+  cursor: pointer;
+}

@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeBooks } from '../redux/books/bookSlice';
+import { removeBooks, getBooks } from '../redux/books/bookSlice';
 import Book from './Book';
 
 function BookList() {
-  const books = useSelector((state) => state.Books);
-
+  const { books, isLoading } = useSelector((state) => state.books);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
 
   return (
     <>
-      {books.map((bookDetails) => (
-        <Book
-          key={bookDetails.item_id}
-          category={bookDetails.category}
-          title={bookDetails.title}
-          author={bookDetails.author}
-          onDelete={() => dispatch(removeBooks(bookDetails.item_id))}
-        />
-      ))}
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        books.map((bookDetails) => (
+          <Book
+            key={bookDetails.item_id}
+            category={bookDetails.category}
+            title={bookDetails.title}
+            author={bookDetails.author}
+            onDelete={() => dispatch(removeBooks(bookDetails.item_id))}
+          />
+        ))
+      )}
     </>
   );
 }

@@ -32,7 +32,7 @@ function BookForm() {
 
   return (
     <>
-      <div className="contanier">
+      <div className="container">
         <h2>ADD NEW BOOK</h2>
         <div>
           <input
@@ -55,7 +55,7 @@ function BookForm() {
             onChange={(e) => setNewbook({ ...newbook, category: e.target.value })}
           >
             <option value="Category">Category</option>
-            <option value="Fiction">fiction</option>
+            <option value="Fiction">Fiction</option>
           </select>
           <button className="addbtn" type="submit" onClick={handleAddBtn}>
             ADD BOOK

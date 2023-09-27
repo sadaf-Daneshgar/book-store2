@@ -10,13 +10,13 @@ function BookList() {
 
   return (
     <>
-      {books.map((booksDetails) => (
+      {books.map((bookDetails) => (
         <Book
-          key={booksDetails.item_id}
-          category={booksDetails.category}
-          title={booksDetails.title}
-          author={booksDetails.author}
-          onDelete={() => dispatch(removeBooks(booksDetails.item_id))}
+          key={bookDetails.item_id}
+          category={bookDetails.category}
+          title={bookDetails.title}
+          author={bookDetails.author}
+          onDelete={() => dispatch(removeBooks(bookDetails.item_id))}
         />
       ))}
     </>

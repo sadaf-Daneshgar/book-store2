@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Book({ category, title, author, onDelete }) {
+function Book({
+  category, title, author, onDelete,
+}) {
   return (
     <div className="bookcont">
       <div className="books-info">

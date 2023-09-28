@@ -1,46 +1,26 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { object } from 'prop-types';
 
 const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/g5ahFOiYPc0zxZGYNqkm/books';
 
 export const getBooks = createAsyncThunk('books/getBooks', async () => {
-  try {
-    const response = await axios.get(URL);
-    const { data } = await response.data; 
-    return data;
-  } catch (err) {
-    return err;
-  }
+  const response = await axios.get(URL);
+  const books = Object.keys(response.data).map((id) => ({
+    item_id: id,
+    ...response.data[id][0],
+  }));
+  return books;
 });
 
 export const addBooks = createAsyncThunk('books/addBooks', async (newBook) => {
-  try {
-    const response = await axios.post(URL, newBook);
-    const { data } = await response.data; 
-    return data;
-  } catch (err) {
-    return err
-  }
+  await axios.post(URL, newBook);
+  return newBook;
 });
 
 export const removeBooks = createAsyncThunk('books/removeBooks', async (itemID) => {
-  try {
-    const { data } = await axios.delete(`${URL}/${itemID}`);
-    return data;
-  } catch (err) {
-     return err;
-  }
+  await axios.delete(`${URL}/${itemID}`);
+  return itemID;
 });
-
-function AddNewBooks({Ketab}){
-  return {
-    item_id: crypto.randomUUID(),
-    title: Ketab.title,
-    author: Ketab.author,
-    category: Ketab.category
-  }
-}
 
 const initialState = {
   books: [],
@@ -51,9 +31,7 @@ const initialState = {
 const BooksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-    
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getBooks.pending, (state) => {
@@ -63,9 +41,7 @@ const BooksSlice = createSlice({
       .addCase(getBooks.fulfilled, (state, action) => {
         state.isLoading = false;
         state.message = '';
-
-        const Books = object.Books(action.payload);
-        state.books = Books.map((book) => AddNewBooks(book, action.payload(book)))
+        state.books = action.payload;
       })
       .addCase(getBooks.rejected, (state, action) => {
         state.isLoading = false;
@@ -75,9 +51,10 @@ const BooksSlice = createSlice({
         state.isLoading = true;
         state.message = '';
       })
-      .addCase(addBooks.fulfilled, (state) => {
+      .addCase(addBooks.fulfilled, (state, action) => {
         state.isLoading = false;
         state.message = '';
+        state.books.push(action.payload);
       })
       .addCase(addBooks.rejected, (state, action) => {
         state.isLoading = false;
@@ -87,7 +64,9 @@ const BooksSlice = createSlice({
         state.isLoading = true;
         state.message = '';
       })
-      .addCase(removeBooks.fulfilled, (state) => {
+      .addCase(removeBooks.fulfilled, (state, action) => {
+        const itemId = action.payload;
+        state.books = state.books.filter((book) => book.item_id !== itemId);
         state.isLoading = false;
         state.message = '';
       })
